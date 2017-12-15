@@ -4,10 +4,10 @@ sudo: required
 
 stages:
   - test-a
-  - deploy-1
-#     if: ( branch = master ) AND ( tag IS blank )
-#   - deploy-tag
-#     if: ( tag =~ ^beta.* ) OR ( tag =~ ^test.* )
+  - name: deploy-1
+    if: ( branch = master ) AND ( tag IS blank )
+  - name: deploy-tag
+    if: ( tag =~ ^beta.* ) OR ( tag =~ ^test.* )
 
 before_script:
   - echo "global before_script"
