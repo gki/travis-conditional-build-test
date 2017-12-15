@@ -45,7 +45,7 @@ jobs:
         - echo "test script 1 B"
         - echo "test script 2 B"
     - stage: deploy-1
-      script: echo "test script in deploy 1"
+      script: skip
       before_deploy:
         - echo "deploy-1 before_deploy"
       deploy:
