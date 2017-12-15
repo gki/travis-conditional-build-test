@@ -2,12 +2,12 @@ language: android
 jdk: oraclejdk8
 sudo: required
 
-stages:
-  - test-a
-  - deploy-1
-    if: ( branch = master ) AND ( tag IS blank )
-  - deploy-tag
-    if: ( tag =~ ^beta.* ) OR ( tag =~ ^test.* )
+# stages:
+#   - test-a
+#   - deploy-1
+#     if: ( branch = master ) AND ( tag IS blank )
+#   - deploy-tag
+#     if: ( tag =~ ^beta.* ) OR ( tag =~ ^test.* )
 
 before_script:
   - echo "global before_script"
