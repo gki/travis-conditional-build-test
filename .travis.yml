@@ -32,20 +32,20 @@ jobs:
         - echo "test script 2 B"
     - stage: deploy 1
       if: branch = master
-      script: echo "test script in deploy"
+      script: echo "test script in deploy 1"
       deploy:
         skip_cleanup: true
         provider: script
         script:
           # this script task will override "grobal deploy".
-          - echo "deploy as a job"
+          - echo "deploy 1 as a job"
     - stage: deploy tag
       if: ${tag,,} =~ beta
-      script: echo "test script in deploy"
+      script: echo "test script in deploy tag"
       deploy:
         skip_cleanup: true
         provider: script
         script:
           # this script task will override "grobal deploy".
-          - echo "deploy as a job"
+          - echo "deploy tag as a job"
 
