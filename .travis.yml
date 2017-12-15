@@ -30,7 +30,8 @@ jobs:
       script: 
         - echo "test script 1 B"
         - echo "test script 2 B"
-    - stage: deploy
+    - stage: deploy 1
+      if: branch = master
       script: echo "test script in deploy"
       deploy:
         skip_cleanup: true
@@ -38,3 +39,13 @@ jobs:
         script:
           # this script task will override "grobal deploy".
           - echo "deploy as a job"
+    - stage: deploy tag
+      if: ${tag,,} =~ beta
+      script: echo "test script in deploy"
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script:
+          # this script task will override "grobal deploy".
+          - echo "deploy as a job"
+
