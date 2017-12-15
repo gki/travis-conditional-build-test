@@ -4,13 +4,22 @@ sudo: required
 before_script:
   - echo "global before_script"
 script:
-  - echo "global script"
+  # this script task will be ignored and jobs: will be run.
+  - echo "global script" 
 after_script:
   - echo "global after_script"
 after_success:
   - echo "global after_success"
 before_deploy:
   - echo "global before_deploy"
+deploy:
+  deploy:
+    skip_cleanup: true
+    provider: script
+    script:
+      - echo "global deploy"
+    on:
+        branch: master
 after_deploy:
   - echo "global after_deploy"
 jobs:
