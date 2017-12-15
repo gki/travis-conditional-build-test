@@ -7,10 +7,21 @@ script:
   - echo "global script"
 after_script:
   - echo "global after_script"
+after_success:
+  - echo "global after_success"
+before_deploy:
+  - echo "global before_deploy"
+after_deploy:
+  - echo "global after_deploy"
 jobs:
   include:
-    - stage: test
-      script: echo "test script 1"
-      script: echo "test script 2"
+    - stage: test A
+      script: 
+        - echo "test script 1 A"
+        - echo "test script 2 A"
+    - stage: test B
+      script: 
+        - echo "test script 1 B"
+        - echo "test script 2 B"
     - stage: deploy
       script: echo "test deploy"
