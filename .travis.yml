@@ -16,6 +16,7 @@ deploy:
   skip_cleanup: true
   provider: script
   script:
+    # thid deploy script will be run after "test A" and "test B"
     - echo "global deploy"
 after_deploy:
   - echo "global after_deploy"
@@ -35,4 +36,5 @@ jobs:
         skip_cleanup: true
         provider: script
         script:
+          # this script task will override "grobal deploy".
           - echo "deploy as a job"
