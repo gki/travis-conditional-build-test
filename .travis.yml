@@ -3,10 +3,10 @@ jdk: oraclejdk8
 sudo: required
 
 stages:
-  - test A
-  - deploy 1
+  - test-a
+  - deploy-1
     if: ( branch = master ) AND ( tag IS blank )
-  - deploy tag
+  - deploy-tag
     if: ( tag =~ ^beta.* ) OR ( tag =~ ^test.* )
 
 before_script:
@@ -30,15 +30,15 @@ after_deploy:
   - echo "global after_deploy"
 jobs:
   include:
-    - stage: test A
+    - stage: test-a
       script: 
         - echo "test script 1 A"
         - echo "test script 2 A"
-    - stage: test B
+    - stage: test-b
       script: 
         - echo "test script 1 B"
         - echo "test script 2 B"
-    - stage: deploy 1
+    - stage: deploy-1
       script: echo "test script in deploy 1"
       deploy:
         skip_cleanup: true
@@ -46,7 +46,7 @@ jobs:
         script:
           # this script task will override "grobal deploy".
           - echo "deploy 1 as a job"
-    - stage: deploy tag
+    - stage: deploy-tag
       script: echo "test script in deploy tag"
       deploy:
         skip_cleanup: true
