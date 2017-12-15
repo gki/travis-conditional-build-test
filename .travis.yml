@@ -13,13 +13,10 @@ after_success:
 before_deploy:
   - echo "global before_deploy"
 deploy:
-  deploy:
-    skip_cleanup: true
-    provider: script
-    script:
-      - echo "global deploy"
-    on:
-        branch: master
+  skip_cleanup: true
+  provider: script
+  script:
+    - echo "global deploy"
 after_deploy:
   - echo "global after_deploy"
 jobs:
@@ -33,4 +30,9 @@ jobs:
         - echo "test script 1 B"
         - echo "test script 2 B"
     - stage: deploy
-      script: echo "test deploy"
+      script: echo "test script in deploy"
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script:
+          - echo "deploy as a job"
