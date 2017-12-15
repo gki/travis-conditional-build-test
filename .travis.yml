@@ -1,6 +1,14 @@
 language: android
 jdk: oraclejdk8
 sudo: required
+
+stages:
+  - test A
+  - deploy 1
+    if: branch = master AND tag IS blank
+  - deploy tag
+    if: tag =~ ^beta.* OR tag =~ ^test.*
+
 before_script:
   - echo "global before_script"
 script:
@@ -31,7 +39,6 @@ jobs:
         - echo "test script 1 B"
         - echo "test script 2 B"
     - stage: deploy 1
-      if: branch = master
       script: echo "test script in deploy 1"
       deploy:
         skip_cleanup: true
@@ -40,7 +47,6 @@ jobs:
           # this script task will override "grobal deploy".
           - echo "deploy 1 as a job"
     - stage: deploy tag
-      if: ${tag,,} =~ beta
       script: echo "test script in deploy tag"
       deploy:
         skip_cleanup: true
