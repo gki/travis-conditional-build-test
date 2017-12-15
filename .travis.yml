@@ -31,9 +31,15 @@ after_deploy:
 jobs:
   include:
     - stage: test-a
+      before_script:
+        - echo "test-a before_script"
       script: 
         - echo "test script 1 A"
         - echo "test script 2 A"
+      after_script:
+        - echo "test-a after_script"
+      before_script:
+        - echo "test-a before_script"
     - stage: test-b
       script: 
         - echo "test script 1 B"
