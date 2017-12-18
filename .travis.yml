@@ -8,6 +8,10 @@ stages:
     if: ( branch = master ) AND ( tag IS blank )
   - name: deploy-tag
     if: ( tag =~ ^beta.* ) OR ( tag =~ ^test.* )
+  - name: type in
+    if: type IN (cron, pull_request)
+  - name: not type in
+    if: NOT type IN (cron, pull_request)
 
 before_script:
   - echo "global before_script"
@@ -30,6 +34,12 @@ after_deploy:
   - echo "global after_deploy"
 jobs:
   include:
+    - stage: type in
+      script: 
+        - echo "Thie is 'type in' job"
+    - stage: not type in
+      script: 
+        - echo "Thie is 'not type in' job"
     - stage: test-a
       before_script:
         - echo "test-a before_script"
